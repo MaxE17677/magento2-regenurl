@@ -83,9 +83,8 @@ class RegenerateProductUrlCommand extends Command
         $this->collection->addAttributeToSelect(['url_path', 'url_key']);
         $list = $this->collection->load();
         foreach($list as $product)
-        {
-            if($store_id === Store::DEFAULT_STORE_ID)
-                $product->setStoreId($store_id);
+        {            
+            $product->setStoreId($store_id);
 
             $this->urlPersist->deleteByData([
                 UrlRewrite::ENTITY_ID => $product->getId(),
